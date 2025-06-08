@@ -4,7 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WWW.BodyHealth.COM</title>
-  <link rel="stylesheet" href="BmiCalculate.css">
+  <style>
+    h1{
+      text-align: center;
+    }
+    #container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+    }
+    form{
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+    }
+    input{
+      font-size: 30px;
+    }
+    button{
+      font-size: 30px;
+    }
+    #result{
+      font-size: 30px;
+    }</style>
 </head>
 <body>
   <div id="container">
@@ -17,5 +44,25 @@
     </form>
   </div>
 </body>
-<script src="BmiCalculate.js"></script>
+<script>
+    
+    const form=document.querySelector("form")
+    form.addEventListener("submit",function(e){
+      e.preventDefault()
+      const height=parseFloat(document.querySelector("#height").value);
+      const weight=parseFloat(document.querySelector("#weight").value);
+      const result=document.querySelector("#result");
+      const bmi=weight/(height*height);
+      if(height==='' && height>=0 && isNaN(height)){
+        result.innerHTML=`please give a valid height ${height}`
+      }
+      if(weight==='' && weight>=0 && isNaN(weight)){
+        result.innerHTML=`please give a valid weight ${weight}`
+      }
+      else{
+        result.innerHTML=`your body bmi is ${bmi} kilogram per meter square`
+      }
+      
+    })
+</script>
 </html>
